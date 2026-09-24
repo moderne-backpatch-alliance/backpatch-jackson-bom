@@ -1,6 +1,6 @@
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 2.13.5.1-backpatch-00005
+release: 2.13.5.1-backpatch-00006
 baseline: v2.13.5+backpatch.baseline
 fixes:
   - cve: CVE-2025-52999
@@ -27,11 +27,16 @@ fixes:
     upstream: https://nvd.nist.gov/vuln/detail/CVE-2026-50193
     artifacts:
       - com.fasterxml.jackson.core:jackson-databind
-    note: New in this release; ported onto 2.13.5; fixed at 2.13.5.1-backpatch-00005 (backpatch-jackson-databind@845e792).
+    note: Carried from 2.13.5.1-backpatch-00005; ported onto 2.13.5; fixed at 2.13.5.1-backpatch-00005 (backpatch-jackson-databind@845e792).
+  - cve: CVE-2026-54514
+    upstream: https://nvd.nist.gov/vuln/detail/CVE-2026-54514
+    artifacts:
+      - com.fasterxml.jackson.core:jackson-databind
+    note: New in this release; ported onto 2.13.5; fixed at 2.13.5.1-backpatch-00006 (backpatch-jackson-databind@19b3144).
 tests:
-  commit: ba1c1f1f7e7ba24fb1defc54f0e10a5e8f9aa8b7
+  commit: 867dc850378b65b76ff1d34a556e2a394d46ca7f
   command: none in this repository
   runtime: none, no build or test ran for this release
   report: carried, see the evidence of the release named in the note
   result: pass
-  note: this release changes only the versions this repository pins, nothing ran here. Its test provenance is the release it pins that carried the fix, the form REL-001.REQ-002 proposes with REL-009 (finos-osera/remediation-standards#67, pending adoption); result pass is that release's result. CVE-2026-50193 carried by moderne-backpatch-alliance/backpatch-jackson-databind at v2.13.5.1-backpatch-00005, whose .backpatch/patch-evidence.yaml records the tests that ran
+  note: this release changes only the versions this repository pins, nothing ran here. Its test provenance is the release it pins that carried the fix, the form REL-001.REQ-002 proposes with REL-009 (finos-osera/remediation-standards#67, pending adoption); result pass is that release's result. CVE-2026-54514 carried by moderne-backpatch-alliance/backpatch-jackson-databind at v2.13.5.1-backpatch-00006, whose .backpatch/patch-evidence.yaml records the tests that ran
