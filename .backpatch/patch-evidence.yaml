@@ -1,0 +1,17 @@
+schema: osera-patch-evidence/0.1.0
+producer: moderne
+release: 2.13.5.1-backpatch-00001
+baseline: v2.13.5+backpatch.baseline
+fixes:
+  - cve: CVE-2025-52999
+    upstream: https://nvd.nist.gov/vuln/detail/CVE-2025-52999
+    artifacts:
+      - com.fasterxml.jackson.core:jackson-core
+    note: New in this release; ported onto 2.13.5; fixed at 2.13.5.1-backpatch-00001 (backpatch-jackson-core@b9e4b3a).
+tests:
+  commit: 0f6f48f9650ac4055ca6f48ab213215c4f87c72c
+  command: none in this repository
+  runtime: none, no build or test ran for this release
+  report: carried, see the evidence of the release named in the note
+  result: pass
+  note: this release changes only the versions this repository pins, nothing ran here. Its test provenance is the release it pins that carried the fix, the form REL-001.REQ-002 proposes with REL-009 (finos-osera/remediation-standards#67, pending adoption); result pass is that release's result. CVE-2025-52999 carried by moderne-backpatch-alliance/backpatch-jackson-core at v2.13.5.1-backpatch-00001, whose .backpatch/patch-evidence.yaml records the tests that ran
