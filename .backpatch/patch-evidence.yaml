@@ -1,6 +1,6 @@
 schema: osera-patch-evidence/0.1.0
 producer: moderne
-release: 2.13.5.1-backpatch-00013
+release: 2.13.5.1-backpatch-00014
 baseline: v2.13.5+backpatch.baseline
 fixes:
   - cve: CVE-2025-52999
@@ -150,12 +150,21 @@ fixes:
     basis: adapted
     artifacts:
       - com.fasterxml.jackson.core:jackson-databind
-    note: New in this release; ported onto 2.13.5; fixed at 2.13.5.1-backpatch-00013 (backpatch-jackson-databind@964de55).
+    note: Carried from 2.13.5.1-backpatch-00013; ported onto 2.13.5; fixed at 2.13.5.1-backpatch-00013 (backpatch-jackson-databind@964de55).
+  - cve: CVE-2026-18401
+    upstream_fix_url: https://github.com/FasterXML/jackson-core/commit/b0c428e6f993e1b5ece5c1c3cb2523e887cd52cf
+    advisory_url: https://nvd.nist.gov/vuln/detail/CVE-2026-18401
+    patch_commit_url: https://github.com/moderne-backpatch-alliance/backpatch-jackson-core/commit/58bfacd
+    basis: adapted
+    artifacts:
+      - com.fasterxml.jackson.core:jackson-core
+      - com.fasterxml.jackson.jr:jackson-jr-all
+    note: New in this release; ported onto 2.13.5; fixed at 2.13.5.1-backpatch-00014 (backpatch-jackson-core@58bfacd).
 tests:
-  commit: 4db98a28a2d51752d4f5c85d07e0d071448825a7
-  command: none in this repository
-  runtime: none, no build or test ran for this release
-  report: jackson-databind-2.13.5.1-backpatch-00013-tests.zip
-  report_sha256: 525811ac07167f9c0b73c10f059612169c383ea6b1d5dcb48fb0763a2d947a9d
+  commit: 66c3010247ab8291cb18a237223f395d88f3daf8
+  command: JAVA_HOME=<jdk-8> mvn -B -Dmaven.repo.local=<local repository holding this release's jackson-core> -Djackson.version.core=2.13.5.1-backpatch-00014 -Dmaven.javadoc.skip=true -Denforcer.skip=true -Dgpg.skip=true clean test
+  runtime: Azul Zulu (Java 1.8.0_382), Apache Maven 3.9.16, macOS aarch64
+  report: jackson-jr-all-2.13.5.1-backpatch-00014-tests.zip
+  report_sha256: bb77a646cc708aca8662db6311762538ec028c33eeac647d333ce75710de5e6b
   result: pass
-  note: this release changes only the versions this repository pins, nothing ran here; its test provenance is CVE-2026-68497 carried by moderne-backpatch-alliance/backpatch-jackson-databind at v2.13.5.1-backpatch-00013, whose .backpatch/patch-evidence.yaml records the tests that ran
+  note: jackson-jr 2.13.5's suite at its release tag, 145 run, 0 failed, 0 errors, 0 skipped, against this release's jackson-core; jackson-jr-all is rebuilt from that tag with this release's jackson-core shaded in, its 127 classes under com/fasterxml/jackson/jr/private_ are identical to this release's jackson-core classes after the shade relocation, and every other entry equals Central's jackson-jr-all 2.13.5 but for the version metadata; the fixes' own tests are recorded by moderne-backpatch-alliance/backpatch-jackson-core at v2.13.5.1-backpatch-00014
